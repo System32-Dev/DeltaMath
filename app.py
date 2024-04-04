@@ -39,14 +39,18 @@ class MyServer(BaseHTTPRequestHandler):
 
         self.wfile.write(bytes(re.findall('"([^"]*)"', response.choices[0].message.content)[0], encoding='utf8'))
 
+class app:
+    def run():
+        webServer = HTTPServer((hostName, serverPort), MyServer)
+        print("Server started http://%s:%s" % (hostName, serverPort))
+
+        try:
+            webServer.serve_forever()
+        except KeyboardInterrupt:
+            pass
+
+        webServer.server_close()
+        print("Server stopped.")
+        
 if __name__ == "__main__":        
-    webServer = HTTPServer((hostName, serverPort), MyServer)
-    print("Server started http://%s:%s" % (hostName, serverPort))
-
-    try:
-        webServer.serve_forever()
-    except KeyboardInterrupt:
-        pass
-
-    webServer.server_close()
-    print("Server stopped.")
+    app.run()
