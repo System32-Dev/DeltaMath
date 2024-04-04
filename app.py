@@ -40,7 +40,10 @@ class MyServer(BaseHTTPRequestHandler):
         self.wfile.write(bytes(re.findall('"([^"]*)"', response.choices[0].message.content)[0], encoding='utf8'))
 
 class app:
-    def run(r, w):
+    def __init__(w, r):
+        print("app")
+    
+    def run():
         webServer = HTTPServer((hostName, serverPort), MyServer)
         print("Server started http://%s:%s" % (hostName, serverPort))
 
