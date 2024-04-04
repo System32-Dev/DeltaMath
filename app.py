@@ -40,7 +40,7 @@ class MyServer(BaseHTTPRequestHandler):
         self.wfile.write(bytes(re.findall('"([^"]*)"', response.choices[0].message.content)[0], encoding='utf8'))
 
 class app:
-    def __init__(r):
+    def __init__(w, x, r):
         print("app")
     
     def run():
